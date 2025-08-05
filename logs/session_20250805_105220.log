@@ -1,0 +1,33 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250805105220
+Username: DESKTOP-CRF8LMI\User
+RunAs User: DESKTOP-CRF8LMI\User
+Configuration Name: 
+Machine: DESKTOP-CRF8LMI (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -Command Set-Location -LiteralPath C:\Users\User\Desktop\FactorioServerManager
+Process ID: 1636
+PSVersion: 5.1.19041.6157
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6157
+BuildVersion: 10.0.19041.6157
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\User\Desktop\FactorioServerManager\logs\session_20250805_105220.log
+VERBOSE: Checking if Factorio is installed.
+[INFO] Validating credentials for Factorio download...
+VERBOSE: POST https://auth.factorio.com/api-login with -1-byte payload
+>> TerminatingError(Invoke-RestMethod): "{"message":"Argument 'username' missing"}
+"
+WARNING: [ERROR] Login failed: The remote server returned an error: (400) Bad Request.
+VERBOSE: POST https://auth.factorio.com/api-login with -1-byte payload
+>> TerminatingError(Invoke-RestMethod): "{"message":"Argument 'username' missing"}
+"
+WARNING: [ERROR] Login failed: The remote server returned an error: (400) Bad Request.
+VERBOSE: POST https://auth.factorio.com/api-login with -1-byte payload
+>> TerminatingError(Invoke-RestMethod): "{"message":"Argument 'username' missing"}
+"
+WARNING: [ERROR] Login failed: The remote server returned an error: (400) Bad Request.

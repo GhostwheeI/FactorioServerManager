@@ -1,0 +1,869 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250805104713
+Username: DESKTOP-CRF8LMI\User
+RunAs User: DESKTOP-CRF8LMI\User
+Configuration Name: 
+Machine: DESKTOP-CRF8LMI (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -Command Set-Location -LiteralPath C:\Users\User\Desktop\FactorioServerManager
+Process ID: 3628
+PSVersion: 5.1.19041.6157
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6157
+BuildVersion: 10.0.19041.6157
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\User\Desktop\FactorioServerManager\logs\session_20250805_104713.log
+VERBOSE: Checking if Factorio is installed.
+[INFO] Downloading latest Factorio server...
+VERBOSE: GET https://factorio.com/get-download/stable/headless/windows64?username=GhostwheeI&token= with 0-byte payload
+>> TerminatingError(Invoke-WebRequest): "
+
+ 
+     404 | Factorio
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    -->
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+ 
+ 
+    
+        
+            
+                
+                
+                    
+                        Factorio.com
+                    
+                        |
+                    
+                
+                    
+                        Forums
+                    
+                        |
+                    
+                
+                    
+                        Wiki
+                    
+                        |
+                    
+                
+                    
+                        Mod Portal
+                    
+                        |
+                    
+                
+                    
+                        API Docs
+                    
+                
+            
+            
+                
+                        
+                        Log in
+                    
+                    |
+                    
+                        
+                        Sign up
+                    
+            
+            
+                .top-banner {
+                    margin-top: 12px;
+                    font-size: larger;
+                    text-decoration: underline;
+                    text-decoration-color: red;
+                }
+                .top-banner a {
+                    color: white;
+                }
+                .top-banner i {
+                    color: #ffa200;
+                }
+                .top-banner-divider {
+                    margin-top: 12px;
+                    margin-left: 12px;
+                    margin-right: 12px;
+                    font-size: larger;
+                }
+            
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+                
+                
+            
+            
+            
+            
+            
+            
+
+            
+                
+                    
+                        
+
+                            
+                                Game
+                            
+
+                            
+                            
+                                
+                                    
+                                
+                            
+                        
+                        
+                            
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Screenshots
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Videos
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Content
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Merch
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Artwork
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        About us
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Buy
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Demo
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                
+                            
+                        
+                    
+                    
+                        
+
+                            
+                                Space Age
+                            
+
+                            
+                            
+                            
+                            
+                                
+                                    
+                                
+                            
+                        
+                        
+                            
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Content
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Galaxy
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Presskit
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Buy
+                                                    
+                                            
+                                    
+                                
+                            
+                        
+                    
+                    
+                        
+
+                            
+                                Blog
+                            
+
+                            
+                            
+                        
+                        
+                    
+                    
+                        
+
+                            
+                                Support
+                            
+
+                            
+                            
+                                
+                                    
+                                
+                            
+                        
+                        
+                            
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Help
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        FAQ
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Presskit
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Contact
+                                                    
+                                            
+                                    
+                                
+                            
+                        
+                    
+            
+        
+    
+
+    
+        
+            
+                
+                    
+                
+                
+            
+
+            
+
+            
+  
+    404 - Page not found
+    
+      This page is missing.
+      If you believe it should be here, please let us know at support@factorio.com.
+    
+  
+
+        
+    
+
+    
+        
+
+            
+                Terms of Service|Privacy|Imprint|Presskit|Contact|RSS|Jobs
+            
+            
+                
+                
+                
+            
+            
+                Copyright © 2015 - 2025 Wube Software - all rights reserved.
+            
+        
+    
+
+    
+
+    
+    
+    -->
+    
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = 'ImQyNDhlZDk2ZjNkNzQ5ZjA0NjY2NjI0MmRjZTdlYWNkNDJkMTg3NTAi.aJJDvQ.1SyJCHFGbs6LNwck4m_1x1IvxOc';
+        })
+    
+
+"
+WARNING: Download failed. Check credentials and try again.
+VERBOSE: GET https://factorio.com/get-download/stable/headless/windows64?username=GhostwheeI&token=5a26feff39191eac86ac3aa2db53e6 with 0-byte payload
+>> TerminatingError(Invoke-WebRequest): "
+
+ 
+     404 | Factorio
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    -->
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+ 
+ 
+    
+        
+            
+                
+                
+                    
+                        Factorio.com
+                    
+                        |
+                    
+                
+                    
+                        Forums
+                    
+                        |
+                    
+                
+                    
+                        Wiki
+                    
+                        |
+                    
+                
+                    
+                        Mod Portal
+                    
+                        |
+                    
+                
+                    
+                        API Docs
+                    
+                
+            
+            
+                
+                        
+                        Log in
+                    
+                    |
+                    
+                        
+                        Sign up
+                    
+            
+            
+                .top-banner {
+                    margin-top: 12px;
+                    font-size: larger;
+                    text-decoration: underline;
+                    text-decoration-color: red;
+                }
+                .top-banner a {
+                    color: white;
+                }
+                .top-banner i {
+                    color: #ffa200;
+                }
+                .top-banner-divider {
+                    margin-top: 12px;
+                    margin-left: 12px;
+                    margin-right: 12px;
+                    font-size: larger;
+                }
+            
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+                
+                
+            
+            
+            
+            
+            
+            
+
+            
+                
+                    
+                        
+
+                            
+                                Game
+                            
+
+                            
+                            
+                                
+                                    
+                                
+                            
+                        
+                        
+                            
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Screenshots
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Videos
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Content
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Merch
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Artwork
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        About us
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Buy
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Demo
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                
+                            
+                        
+                    
+                    
+                        
+
+                            
+                                Space Age
+                            
+
+                            
+                            
+                            
+                            
+                                
+                                    
+                                
+                            
+                        
+                        
+                            
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Content
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Galaxy
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Presskit
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Buy
+                                                    
+                                            
+                                    
+                                
+                            
+                        
+                    
+                    
+                        
+
+                            
+                                Blog
+                            
+
+                            
+                            
+                        
+                        
+                    
+                    
+                        
+
+                            
+                                Support
+                            
+
+                            
+                            
+                                
+                                    
+                                
+                            
+                        
+                        
+                            
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Help
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        FAQ
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Presskit
+                                                    
+                                            
+                                    
+                                
+                                    
+                                    
+                                            
+                                            
+                                                    
+                                                        Contact
+                                                    
+                                            
+                                    
+                                
+                            
+                        
+                    
+            
+        
+    
+
+    
+        
+            
+                
+                    
+                
+                
+            
+
+            
+
+            
+  
+    404 - Page not found
+    
+      This page is missing.
+      If you believe it should be here, please let us know at support@factorio.com.
+    
+  
+
+        
+    
+
+    
+        
+
+            
+                Terms of Service|Privacy|Imprint|Presskit|Contact|RSS|Jobs
+            
+            
+                
+                
+                
+            
+            
+                Copyright © 2015 - 2025 Wube Software - all rights reserved.
+            
+        
+    
+
+    
+
+    
+    
+    -->
+    
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = 'ImRmNDRjYTU0Mjg3NzExOTFiOTMxODcwZWQxNGFlYjVmOTIyNjk1NzAi.aJJD5g.ZrYnEHKib8jGnZlEbN7JM_qDK7Q';
+        })
+    
+
+"
+WARNING: Download failed. Check credentials and try again.
