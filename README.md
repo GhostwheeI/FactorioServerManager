@@ -2,6 +2,8 @@
   <h1>⚙️ Factorio Server Manager</h1>
   <p><em>A lightweight, elegant PowerShell-based GUI script to manage your Factorio Dedicated Server on Windows.</em></p>
 
+  <img src="reference.png" alt="Factorio Server Manager banner" width="100%">
+
   [![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-blue?logo=windows)](#)
   [![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-blue?logo=powershell)](#)
   [![Factorio](https://img.shields.io/badge/Factorio-Dedicated%20Server-orange?logo=factorio)](#)
