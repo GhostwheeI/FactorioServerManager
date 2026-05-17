@@ -76,22 +76,44 @@ function Ensure-SettingsFile {
 
 function Show-MainMenu {
     Clear-Host
-    Write-Host "=== Factorio Server Manager ==="
-    Write-Host "1. Load latest save"
-    Write-Host "2. Choose save manually"
-    Write-Host "3. Edit server settings"
-    Write-Host "4. Launch blank server"
-    Write-Host "5. Exit"
-    return Read-Host "Select option (1-5)"
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host "      Factorio Server Manager GUI        " -ForegroundColor Green
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host " 1. Load latest save"
+    Write-Host " 2. Choose save manually"
+    Write-Host " 3. Edit server settings"
+    Write-Host " 4. Create new save & launch server"
+    Write-Host " 5. Force update Factorio Server"
+    Write-Host " 6. Exit"
+    Write-Host "=========================================" -ForegroundColor Cyan
+    return Read-Host "Select option (1-6)"
 }
 
 function Launch-Server {
     param (
         [string]$Exe,
-        [string]$SaveFile = $null
+        [string]$SaveFile = $null,
+        [switch]$CreateSave
     )
-    $args = if ($SaveFile) { @('--start-server', $SaveFile) } else { @('--start-server') }
-    Write-Host "[INFO] Starting Factorio server..."
+    $settingsPath = Join-Path $InstallDir 'data\server-settings.json'
+
+    if ($CreateSave) {
+        $saveName = Read-Host "Enter name for new save (e.g., 'my_factory')"
+        if ([string]::IsNullOrWhiteSpace($saveName)) {
+            Write-Warning "Save name cannot be empty."
+            return
+        }
+        $SaveFile = Join-Path $SavesDir "$saveName.zip"
+        Write-Host "[INFO] Creating new save file at $SaveFile..."
+        Start-Process -FilePath $Exe -ArgumentList @('--create', "`"$SaveFile`"") -NoNewWindow -Wait
+        if (-not (Test-Path $SaveFile)) {
+            Write-Warning "[ERROR] Failed to create save file."
+            return
+        }
+    }
+
+    $args = @('--start-server', "`"$SaveFile`"", '--server-settings', "`"$settingsPath`"")
+    Write-Host "[INFO] Starting Factorio server with save $SaveFile..."
     Start-Process -FilePath $Exe -ArgumentList $args -NoNewWindow -Wait
 }
 
@@ -109,6 +131,7 @@ try {
                     Launch-Server -Exe $factorioExe -SaveFile $latest.FullName
                 } else {
                     Write-Host "[WARN] No save files found."
+                    Pause
                 }
             }
             '2' {
@@ -121,13 +144,24 @@ try {
                 notepad (Join-Path $InstallDir 'data\server-settings.json')
             }
             '4' {
-                Launch-Server -Exe $factorioExe
+                Launch-Server -Exe $factorioExe -CreateSave
             }
             '5' {
+                $confirm = Read-Host "Are you sure you want to re-download the server? (Y/N)"
+                if ($confirm -eq 'Y' -or $confirm -eq 'y') {
+                    if (Test-Path (Join-Path $InstallDir 'bin\x64\factorio.exe')) {
+                        Remove-Item (Join-Path $InstallDir 'bin\x64\factorio.exe') -Force
+                    }
+                    $factorioExe = Ensure-FactorioInstalled
+                    Pause
+                }
+            }
+            '6' {
                 break
             }
             default {
-                Write-Warning "Invalid input."
+                Write-Warning "Invalid input. Please try again."
+                Start-Sleep -Seconds 2
             }
         }
     }
