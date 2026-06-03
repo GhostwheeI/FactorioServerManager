@@ -67,10 +67,10 @@ function Ensure-FactorioInstalled {
 
 function Ensure-SettingsFile {
     $template = Join-Path $InstallDir 'data\server-settings.example.json'
-    $settings = Join-Path $InstallDir 'data\server-settings.json'
+    $settings = Join-Path $scriptRoot 'server-settings.json'
     if (!(Test-Path $settings) -and (Test-Path $template)) {
         Copy-Item $template $settings
-        Write-Host "[INFO] server-settings.json created."
+        Write-Host "[INFO] server-settings.json created in root directory."
     }
 }
 
@@ -82,11 +82,12 @@ function Show-MainMenu {
     Write-Host " 1. Load latest save"
     Write-Host " 2. Choose save manually"
     Write-Host " 3. Edit server settings"
-    Write-Host " 4. Create new save & launch server"
-    Write-Host " 5. Force update Factorio Server"
-    Write-Host " 6. Exit"
+    Write-Host " 4. Edit server adminlist"
+    Write-Host " 5. Create new save & launch server"
+    Write-Host " 6. Force update Factorio Server"
+    Write-Host " 7. Exit"
     Write-Host "=========================================" -ForegroundColor Cyan
-    return Read-Host "Select option (1-6)"
+    return Read-Host "Select option (1-7)"
 }
 
 function Launch-Server {
@@ -95,7 +96,8 @@ function Launch-Server {
         [string]$SaveFile = $null,
         [switch]$CreateSave
     )
-    $settingsPath = Join-Path $InstallDir 'data\server-settings.json'
+    $settingsPath = Join-Path $scriptRoot 'server-settings.json'
+    $adminListPath = Join-Path $scriptRoot 'server-adminlist.json'
 
     if ($CreateSave) {
         $saveName = Read-Host "Enter name for new save (e.g., 'my_factory')"
@@ -112,7 +114,18 @@ function Launch-Server {
         }
     }
 
-    $args = @('--start-server', "`"$SaveFile`"", '--server-settings', "`"$settingsPath`"")
+    $args = @('--start-server', "`"$SaveFile`"")
+
+    if (Test-Path $settingsPath) {
+        $args += '--server-settings'
+        $args += "`"$settingsPath`""
+    }
+
+    if (Test-Path $adminListPath) {
+        $args += '--server-adminlist'
+        $args += "`"$adminListPath`""
+    }
+
     Write-Host "[INFO] Starting Factorio server with save $SaveFile..."
     Start-Process -FilePath $Exe -ArgumentList $args -NoNewWindow -Wait
 }
@@ -141,12 +154,15 @@ try {
                 }
             }
             '3' {
-                notepad (Join-Path $InstallDir 'data\server-settings.json')
+                notepad (Join-Path $scriptRoot 'server-settings.json')
             }
             '4' {
-                Launch-Server -Exe $factorioExe -CreateSave
+                notepad (Join-Path $scriptRoot 'server-adminlist.json')
             }
             '5' {
+                Launch-Server -Exe $factorioExe -CreateSave
+            }
+            '6' {
                 $confirm = Read-Host "Are you sure you want to re-download the server? (Y/N)"
                 if ($confirm -eq 'Y' -or $confirm -eq 'y') {
                     if (Test-Path (Join-Path $InstallDir 'bin\x64\factorio.exe')) {
@@ -156,7 +172,7 @@ try {
                     Pause
                 }
             }
-            '6' {
+            '7' {
                 break
             }
             default {

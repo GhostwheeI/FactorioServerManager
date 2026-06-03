@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.0 - 2026-06-03
+
+### Changed
+- Shifted configuration files (`server-settings.json` and `server-adminlist.json`) to the root of the repository to prevent them from being lost if the Factorio directory is updated or deleted.
+
+### Added
+- Added support for `server-adminlist.json`.
+- Added a new main menu option to easily edit the admin list through the GUI.
+- Added dynamic launch arguments so configuration files are only passed to the server if they exist.
+
 ## v1.0.0 - 2026-05-17
 
 Initial formal release of Factorio Server Manager.

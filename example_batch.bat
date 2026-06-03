@@ -11,7 +11,8 @@
 set "BaseDir=%~dp0"
 set "FactorioExe=%~dp0Factorio\bin\x64\factorio.exe"
 set "ExampleSettings=%~dp0Factorio\data\server-settings.example.json"
-set "SettingsFile=%~dp0Factorio\data\server-settings.json"
+set "SettingsFile=%~dp0server-settings.json"
+set "AdminListFile=%~dp0server-adminlist.json"
 set "SavesDir=%APPDATA%\Factorio\saves"
 set "MenuChoice="
 
@@ -49,16 +50,18 @@ echo =====================================================
 echo [1] Load Latest Save
 echo [2] Load Specific Save (Manual)
 echo [3] Open server-settings.json for Editing
-echo [4] Create New Save ^& Launch Server
-echo [5] Exit
+echo [4] Open server-adminlist.json for Editing
+echo [5] Create New Save ^& Launch Server
+echo [6] Exit
 echo =====================================================
-set /p "MenuChoice=Please enter your choice (1-5): "
+set /p "MenuChoice=Please enter your choice (1-6): "
 
 if "%MenuChoice%"=="1" goto :LoadLatestSave
 if "%MenuChoice%"=="2" goto :LoadSpecificSave
 if "%MenuChoice%"=="3" goto :EditSettings
-if "%MenuChoice%"=="4" goto :CreateSave
-if "%MenuChoice%"=="5" goto :ExitScript
+if "%MenuChoice%"=="4" goto :EditAdminList
+if "%MenuChoice%"=="5" goto :CreateSave
+if "%MenuChoice%"=="6" goto :ExitScript
 
 :: Invalid input handling
 echo Invalid option! Please select a valid option.
@@ -80,7 +83,10 @@ goto :MainMenu
 
 :LaunchLatest
 echo Launching with %LatestSave%
-"%FactorioExe%" --start-server "%SavesDir%\%LatestSave%" --server-settings "%SettingsFile%"
+set "LaunchArgs=--start-server "%SavesDir%\%LatestSave%""
+if exist "%SettingsFile%" set "LaunchArgs=%LaunchArgs% --server-settings "%SettingsFile%""
+if exist "%AdminListFile%" set "LaunchArgs=%LaunchArgs% --server-adminlist "%AdminListFile%""
+"%FactorioExe%" %LaunchArgs%
 pause
 goto :MainMenu
 
@@ -93,7 +99,15 @@ dir "%SavesDir%\*.zip" /b
 echo.
 set /p "SaveChoice=Save file name: "
 if exist "%SavesDir%\%SaveChoice%" (
-    "%FactorioExe%" --start-server "%SavesDir%\%SaveChoice%" --server-settings "%SettingsFile%"
+    :: Enable delayed expansion for this block to handle dynamic variables inside the IF
+    setlocal EnableDelayedExpansion
+
+    set "LaunchArgs=--start-server "%SavesDir%\%SaveChoice%""
+    if exist "%SettingsFile%" set "LaunchArgs=!LaunchArgs! --server-settings "%SettingsFile%""
+    if exist "%AdminListFile%" set "LaunchArgs=!LaunchArgs! --server-adminlist "%AdminListFile%""
+
+    "!FactorioExe!" !LaunchArgs!
+    endlocal
 ) else (
     echo ERROR: Save file not found.
 )
@@ -110,6 +124,16 @@ if exist "%SettingsFile%" (
 )
 goto :MainMenu
 
+:EditAdminList
+cls
+if exist "%AdminListFile%" (
+    notepad "%AdminListFile%"
+) else (
+    echo ERROR: Admin list file not found.
+    pause
+)
+goto :MainMenu
+
 :CreateSave
 cls
 echo =====================================================
@@ -122,7 +146,14 @@ set "NewSavePath=%SavesDir%\%NewSaveName%.zip"
 "%FactorioExe%" --create "%NewSavePath%"
 if exist "%NewSavePath%" (
     echo Starting server with new save...
-    "%FactorioExe%" --start-server "%NewSavePath%" --server-settings "%SettingsFile%"
+    setlocal EnableDelayedExpansion
+
+    set "LaunchArgs=--start-server "%NewSavePath%""
+    if exist "%SettingsFile%" set "LaunchArgs=!LaunchArgs! --server-settings "%SettingsFile%""
+    if exist "%AdminListFile%" set "LaunchArgs=!LaunchArgs! --server-adminlist "%AdminListFile%""
+
+    "!FactorioExe!" !LaunchArgs!
+    endlocal
 ) else (
     echo ERROR: Failed to create save.
 )
