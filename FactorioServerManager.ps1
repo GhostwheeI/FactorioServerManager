@@ -67,7 +67,7 @@ function Ensure-FactorioInstalled {
 
 function Ensure-SettingsFile {
     $template = Join-Path $InstallDir 'data\server-settings.example.json'
-    $settings = Join-Path $InstallDir 'data\server-settings.json'
+    $settings = Join-Path $scriptRoot 'server-settings.json'
     if (!(Test-Path $settings) -and (Test-Path $template)) {
         Copy-Item $template $settings
         Write-Host "[INFO] server-settings.json created."
@@ -95,7 +95,6 @@ function Launch-Server {
         [string]$SaveFile = $null,
         [switch]$CreateSave
     )
-    $settingsPath = Join-Path $InstallDir 'data\server-settings.json'
 
     if ($CreateSave) {
         $saveName = Read-Host "Enter name for new save (e.g., 'my_factory')"
@@ -112,9 +111,20 @@ function Launch-Server {
         }
     }
 
-    $args = @('--start-server', "`"$SaveFile`"", '--server-settings', "`"$settingsPath`"")
+    $launchArgs = @('--start-server', "`"$SaveFile`"")
+
+    $settingsPath = Join-Path $scriptRoot 'server-settings.json'
+    if (Test-Path $settingsPath) {
+        $launchArgs += '--server-settings', "`"$settingsPath`""
+    }
+
+    $adminlistPath = Join-Path $scriptRoot 'server-adminlist.json'
+    if (Test-Path $adminlistPath) {
+        $launchArgs += '--server-adminlist', "`"$adminlistPath`""
+    }
+
     Write-Host "[INFO] Starting Factorio server with save $SaveFile..."
-    Start-Process -FilePath $Exe -ArgumentList $args -NoNewWindow -Wait
+    Start-Process -FilePath $Exe -ArgumentList $launchArgs -NoNewWindow -Wait
 }
 
 try {
@@ -141,7 +151,7 @@ try {
                 }
             }
             '3' {
-                notepad (Join-Path $InstallDir 'data\server-settings.json')
+                notepad (Join-Path $scriptRoot 'server-settings.json')
             }
             '4' {
                 Launch-Server -Exe $factorioExe -CreateSave
