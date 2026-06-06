@@ -24,9 +24,20 @@
 
 - 📥 **Auto-install/update:** Effortlessly downloads and extracts the latest Factorio server binary.
 - 💾 **Save File Management:** Launch your server using the latest save file, manually pick one via a GUI window, or generate a fresh new save directly!
-- ⚙️ **Easy Configuration:** Edit `server-settings.json` directly with Notepad through the manager. The script dynamically loads these settings into the game on startup.
+- ⚙️ **Easy Configuration:** Edit `server-settings.json` directly with Notepad through the manager. The script dynamically loads both `server-settings.json` and `server-adminlist.json` from the root directory into the game on startup.
 - 🔄 **Force Update Support:** A convenient menu option to purge the existing executable and forcefully re-download the latest version from Factorio.com.
 - 🪶 **Zero Dependencies:** Requires nothing more than PowerShell and internet access!
+
+---
+
+## ⚙️ Configuration & Admin List
+
+Both `FactorioServerManager.ps1` and `example_batch.bat` are designed to dynamically load your server configurations.
+
+- **`server-settings.json`**: Place this file in the root directory. If missing, the script will automatically copy the example template here. It is used to define server name, visibility, and game rules.
+- **`server-adminlist.json`**: Place this file in the root directory. It is an array of strings representing usernames that should be granted admin privileges (e.g., `["username1", "username2"]`).
+
+When launching the server, the scripts will check for these files in the root directory and dynamically append `--server-settings` and `--server-adminlist` to the launch arguments if they exist.
 
 ---
 
