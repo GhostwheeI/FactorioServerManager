@@ -11,9 +11,19 @@
 set "BaseDir=%~dp0"
 set "FactorioExe=%~dp0Factorio\bin\x64\factorio.exe"
 set "ExampleSettings=%~dp0Factorio\data\server-settings.example.json"
-set "SettingsFile=%~dp0Factorio\data\server-settings.json"
+set "SettingsFile=%~dp0server-settings.json"
+set "AdminListFile=%~dp0server-adminlist.json"
 set "SavesDir=%APPDATA%\Factorio\saves"
 set "MenuChoice="
+
+:: Dynamically construct launch arguments based on file presence
+set "LaunchArgs="
+if exist "%SettingsFile%" (
+    set "LaunchArgs=%LaunchArgs% --server-settings "%SettingsFile%""
+)
+if exist "%AdminListFile%" (
+    set "LaunchArgs=%LaunchArgs% --server-adminlist "%AdminListFile%""
+)
 
 :: Ensure Factorio executable exists
 if not exist "%FactorioExe%" (
@@ -80,7 +90,7 @@ goto :MainMenu
 
 :LaunchLatest
 echo Launching with %LatestSave%
-"%FactorioExe%" --start-server "%SavesDir%\%LatestSave%" --server-settings "%SettingsFile%"
+"%FactorioExe%" --start-server "%SavesDir%\%LatestSave%" %LaunchArgs%
 pause
 goto :MainMenu
 
@@ -93,7 +103,7 @@ dir "%SavesDir%\*.zip" /b
 echo.
 set /p "SaveChoice=Save file name: "
 if exist "%SavesDir%\%SaveChoice%" (
-    "%FactorioExe%" --start-server "%SavesDir%\%SaveChoice%" --server-settings "%SettingsFile%"
+    "%FactorioExe%" --start-server "%SavesDir%\%SaveChoice%" %LaunchArgs%
 ) else (
     echo ERROR: Save file not found.
 )
@@ -122,7 +132,7 @@ set "NewSavePath=%SavesDir%\%NewSaveName%.zip"
 "%FactorioExe%" --create "%NewSavePath%"
 if exist "%NewSavePath%" (
     echo Starting server with new save...
-    "%FactorioExe%" --start-server "%NewSavePath%" --server-settings "%SettingsFile%"
+    "%FactorioExe%" --start-server "%NewSavePath%" %LaunchArgs%
 ) else (
     echo ERROR: Failed to create save.
 )

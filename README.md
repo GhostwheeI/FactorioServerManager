@@ -24,7 +24,7 @@
 
 - 📥 **Auto-install/update:** Effortlessly downloads and extracts the latest Factorio server binary.
 - 💾 **Save File Management:** Launch your server using the latest save file, manually pick one via a GUI window, or generate a fresh new save directly!
-- ⚙️ **Easy Configuration:** Edit `server-settings.json` directly with Notepad through the manager. The script dynamically loads these settings into the game on startup.
+- ⚙️ **Easy Configuration:** Edit `server-settings.json` directly with Notepad through the manager. The script dynamically loads this and `server-adminlist.json` from the repository root into the game on startup, if they exist.
 - 🔄 **Force Update Support:** A convenient menu option to purge the existing executable and forcefully re-download the latest version from Factorio.com.
 - 🪶 **Zero Dependencies:** Requires nothing more than PowerShell and internet access!
 

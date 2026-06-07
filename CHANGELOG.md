@@ -12,6 +12,7 @@ Initial formal release of Factorio Server Manager.
 - Manual save file selection through a GUI picker.
 - New save creation and launch support.
 - Server settings editing through Notepad.
+- Dynamic loading of `server-settings.json` and `server-adminlist.json` from the repository root for both the PowerShell and Batch scripts.
 - Force update option for re-downloading the Factorio server executable.
 - Alternative batch script for users who prefer CMD/batch workflows.
 - README hero image and cleaned project presentation.
