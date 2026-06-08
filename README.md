@@ -64,7 +64,7 @@ Upon launching the script, you will be presented with a menu:
 
 1. **Load latest save:** Automatically loads the most recent save file from `%APPDATA%\Factorio\saves`.
 2. **Choose save manually:** Opens a window to manually select the save file you want to load.
-3. **Edit server settings:** Opens your server settings in Notepad for quick modifications. (Uses `--server-settings` parameter when launching).
+3. **Edit server settings:** Opens your server settings in Notepad for quick modifications. Automatically applies `server-settings.json` and `server-adminlist.json` from the root directory during server launch if they exist.
 4. **Create new save & launch server:** Generates a fresh `.zip` save dynamically before starting the server.
 5. **Force update Factorio Server:** Re-downloads and updates the executable.
 6. **Exit:** Closes the manager.

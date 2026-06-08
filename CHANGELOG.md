@@ -15,6 +15,7 @@ Initial formal release of Factorio Server Manager.
 - Force update option for re-downloading the Factorio server executable.
 - Alternative batch script for users who prefer CMD/batch workflows.
 - README hero image and cleaned project presentation.
+- Server configuration files (`server-settings.json` and `server-adminlist.json`) have been moved to the root directory, and are dynamically included as arguments when launching the server.
 
 ### Requirements
 
