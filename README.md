@@ -15,6 +15,7 @@
 - [✨ Features](#-features)
 - [🚀 Quick Start](#-quick-start)
 - [🛠️ Usage \& Options](#️-usage--options)
+- [⚙️ Configuration Details](#️-configuration-details)
 - [📦 Requirements](#-requirements)
 - [🦇 Alternative: Batch Script](#-alternative-batch-script)
 
@@ -68,6 +69,15 @@ Upon launching the script, you will be presented with a menu:
 4. **Create new save & launch server:** Generates a fresh `.zip` save dynamically before starting the server.
 5. **Force update Factorio Server:** Re-downloads and updates the executable.
 6. **Exit:** Closes the manager.
+
+---
+
+## ⚙️ Configuration Details
+
+Factorio Server Manager provides robust configuration handling designed for convenience and ease of use:
+
+- **Default Configuration:** Out of the box, `server-settings.json` is generated inside the `Factorio/data/` directory.
+- **Root Overrides:** For cleaner management, you can place a `server-settings.json` and/or `server-adminlist.json` file directly in the repository's root directory. The manager will automatically detect these root files and prioritize them over the default settings, seamlessly injecting them into your server's launch arguments.
 
 ---
 

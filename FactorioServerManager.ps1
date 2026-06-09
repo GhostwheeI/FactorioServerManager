@@ -3,6 +3,7 @@
   Factorio Dedicated Server Manager (PowerShell Edition)
 .DESCRIPTION
   Launches and manages a local Factorio server with credential-verified downloads.
+  Version 1.1.0
 #>
 
 Set-StrictMode -Version Latest
@@ -13,6 +14,9 @@ $scriptRoot = $PSScriptRoot
 $InstallDir = Join-Path $scriptRoot "Factorio"
 $SavesDir   = Join-Path $env:APPDATA "Factorio\saves"
 $LogDir     = Join-Path $scriptRoot "logs"
+$ActiveSettings = Join-Path $InstallDir 'data\server-settings.json'
+$RootSettings   = Join-Path $scriptRoot "server-settings.json"
+$RootAdminList  = Join-Path $scriptRoot "server-adminlist.json"
 $startupLog = Join-Path $LogDir "startup.log"
 if (!(Test-Path $LogDir)) { [System.IO.Directory]::CreateDirectory($LogDir) | Out-Null }
 Add-Content -Path $startupLog -Value "[INIT] Script launched at $(Get-Date)"
@@ -95,7 +99,8 @@ function Launch-Server {
         [string]$SaveFile = $null,
         [switch]$CreateSave
     )
-    $settingsPath = Join-Path $InstallDir 'data\server-settings.json'
+
+    $settingsPath = if (Test-Path $RootSettings) { $RootSettings } else { $ActiveSettings }
 
     if ($CreateSave) {
         $saveName = Read-Host "Enter name for new save (e.g., 'my_factory')"
@@ -113,6 +118,10 @@ function Launch-Server {
     }
 
     $args = @('--start-server', "`"$SaveFile`"", '--server-settings', "`"$settingsPath`"")
+    if (Test-Path $RootAdminList) {
+        $args += '--server-adminlist'
+        $args += "`"$RootAdminList`""
+    }
     Write-Host "[INFO] Starting Factorio server with save $SaveFile..."
     Start-Process -FilePath $Exe -ArgumentList $args -NoNewWindow -Wait
 }
@@ -141,7 +150,8 @@ try {
                 }
             }
             '3' {
-                notepad (Join-Path $InstallDir 'data\server-settings.json')
+                $editSettingsPath = if (Test-Path $RootSettings) { $RootSettings } else { $ActiveSettings }
+                notepad $editSettingsPath
             }
             '4' {
                 Launch-Server -Exe $factorioExe -CreateSave

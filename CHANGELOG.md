@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.0 - Unreleased
+
+### Added
+- Support for root configuration overrides (`server-settings.json` and `server-adminlist.json`).
+- Dynamic configuration file injection in both PowerShell and Batch scripts.
+- Expanded "Edit server settings" option to correctly target the active settings file based on root configuration presence.
+
 ## v1.0.0 - 2026-05-17
 
 Initial formal release of Factorio Server Manager.
