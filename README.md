@@ -24,7 +24,7 @@
 
 - 📥 **Auto-install/update:** Effortlessly downloads and extracts the latest Factorio server binary.
 - 💾 **Save File Management:** Launch your server using the latest save file, manually pick one via a GUI window, or generate a fresh new save directly!
-- ⚙️ **Easy Configuration:** Edit `server-settings.json` directly with Notepad through the manager. The script dynamically loads these settings into the game on startup.
+- ⚙️ **Easy Configuration:** Edit `server-settings.json` and `server-adminlist.json` directly from the repository root. The script dynamically loads these settings into the game on startup if they exist.
 - 🔄 **Force Update Support:** A convenient menu option to purge the existing executable and forcefully re-download the latest version from Factorio.com.
 - 🪶 **Zero Dependencies:** Requires nothing more than PowerShell and internet access!
 
@@ -41,7 +41,7 @@
    ```
 
 > **Note on First Run:**
-> The script will automatically download and extract the latest Factorio server to `./Factorio/`. It will also create a config directory and generate default settings if they are missing.
+> The script will automatically download and extract the latest Factorio server to `./Factorio/`. It will also generate default settings at the repository root if they are missing.
 
 ---
 
@@ -64,7 +64,7 @@ Upon launching the script, you will be presented with a menu:
 
 1. **Load latest save:** Automatically loads the most recent save file from `%APPDATA%\Factorio\saves`.
 2. **Choose save manually:** Opens a window to manually select the save file you want to load.
-3. **Edit server settings:** Opens your server settings in Notepad for quick modifications. (Uses `--server-settings` parameter when launching).
+3. **Edit server settings:** Opens your server settings (`server-settings.json` at the repo root) in Notepad for quick modifications. (Uses `--server-settings` parameter when launching). Note that `server-adminlist.json` is also supported automatically.
 4. **Create new save & launch server:** Generates a fresh `.zip` save dynamically before starting the server.
 5. **Force update Factorio Server:** Re-downloads and updates the executable.
 6. **Exit:** Closes the manager.
